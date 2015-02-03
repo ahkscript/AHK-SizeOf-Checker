@@ -1,11 +1,19 @@
-; sizeof() Checker class
-; Instantiation:
-; If your Visual C Executable (cl.exe) is not in C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\, pass path to where it actually lives.
+/*
+sizeof() Checker class
 
-; Usage:
-; Call Check(<thing>, <include>)
-; eg to check the sizeof(RAWINPUTDEVICE) from Windows.h, pass:
-; Check ("RAWINPUTDEVICE", "Windows.h")
+ToDo:
+* Cater for non-x86.
+  Check SizeOf(int) in C before other checks to detect if Visual Studio x86?
+  Check A_PtrSize to see if AHK x86 / x64 ?
+
+Instantiation:
+If your Visual C Executable (cl.exe) is not in C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\, pass path to where it actually lives.
+
+Usage:
+Call Check(<thing>, <include>)
+eg to check the sizeof(RAWINPUTDEVICE) from Windows.h, pass:
+Check ("RAWINPUTDEVICE", "Windows.h")
+*/
 
 ; Returns size
 Class SizeofChecker {
