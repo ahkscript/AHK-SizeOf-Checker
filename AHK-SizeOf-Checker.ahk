@@ -26,14 +26,26 @@ Class SizeofChecker {
 	}
 	
 	Check(t, i){
-		code := "#include <iostream>`n#include <" i ">`nint main()`n{`nstd::cout << sizeof(" t ") << std::endl;`nreturn 0;`n}"
+		if (!i.MaxIndex() && i){
+			i := [i]
+		}
+		includes := ""
+		Loop % i.MaxIndex(){
+			if (i[A_Index] == ""){
+				msgbox % "*" i[A_Index] "*"
+				continue
+			}
+			includes .= "#include <" i[A_Index] ">`n"
+		}
+		code := "#include <iostream>`n#include <windows.h>`n" includes "int main()`n{`nstd::cout << sizeof(" t ") << std::endl;`nreturn 0;`n}"
 
 		FileDelete, sizeof.exe
 		FileDelete, sizeof.cpp
 		FileAppend, % code, sizeof.cpp
 		RunWait % "compile.bat"
 
-		return this.RunWaitOne("sizeof.exe")
+		ret := this.RunWaitOne("sizeof.exe")
+		return ret
 	}
 	
 	RunWaitOne(command) {
