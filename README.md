@@ -14,6 +14,6 @@ Written for use with HotkeyIt's _Struct - to check that structure definitions ar
 It creates a C source text file with the needed C code to check the size of the data type.  
 It then builds a windows batch file to:  
 1) Set up the Visual Studio compiler to work at the command-line.  
-2) Run the Visual C compiler to compile the C code
-It then runs the batch file to create an EXE.  
-It then runs the compiled EXE and returns the result.
+2) Run the Visual C compiler to compile the C code  
+It then runs the batch file to create an EXE. 
+It then runs the compiled EXE and returns the result.  
