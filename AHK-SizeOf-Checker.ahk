@@ -23,6 +23,19 @@ Class SizeofChecker {
 		if (!this.BatCreated){
 			this.CreateBat()
 		}
+		VCsize := this.Check("int")
+		if (VCSize != 4 || A_PtrSize != 4){
+			MsgBox % "This utility currently only supports 32-bit AHK and 32-bit Visual Studio`n`nExiting..."
+			ExitApp
+		}
+		/*
+		VCsize := this.Check("int")
+		AHKsize := A_PtrSize
+		if (AHKsize != VCsize){
+			this.Multiplier := AHKsize / VCsize
+			MsgBox % VCsize " - " AHKsize
+		}
+		*/
 	}
 	
 	CreateBat(){
@@ -33,7 +46,9 @@ Class SizeofChecker {
 		return 
 	}
 	
-	Check(t, i){
+	; t = Thing to check
+	; i = List of includes (optional, always includes Windows.h)
+	Check(t, i := ""){
 		if (!i.MaxIndex() && i){
 			i := [i]
 		}
@@ -53,6 +68,7 @@ Class SizeofChecker {
 		RunWait % "compile.bat"
 
 		ret := this.RunWaitOne("sizeof.exe")
+		ret += 0	; string to number
 		return ret
 	}
 	
