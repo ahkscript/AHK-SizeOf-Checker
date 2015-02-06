@@ -1,5 +1,5 @@
 #singleinstance force
-#include sizeof_checker.ahk
+#include AHK-SizeOf-Checker.ahk
 
 t := "RAWINPUTDEVICE"
 i := "windows.h"
